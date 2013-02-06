@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%= stylesheet_link_tag 'application', :media => "all" %>
+
 <html>
 <head>
   <title>Demo1</title>
@@ -7,8 +9,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container" style="margin-left: 150px;">
+		<%= link_to "register", register_path %>
 
 <%= yield %>
 
 </body>
 </html>
+</div>

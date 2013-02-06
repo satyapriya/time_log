@@ -1,0 +1,73 @@
+<script type="text/javascript">
+function ValidateEmail(inputText)  
+{  
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+if(inputText.value.match(mailformat))  
+{  
+document.form1.text1.focus();  
+return true;  
+}  
+else  
+{  
+alert("You have entered an invalid email address!");  
+document.form1.text1.focus();  
+return false;  
+}  
+}  
+function ValidatePass(password,cpassword)
+{
+  if (password.value != cpassword.value) { 
+   alert("Your password and confirmation password do not match.");
+   
+   return false; 
+}
+}
+
+</script>
+<%= form_for(@account) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :e_mail %><br />
+    <%= f.text_field :e_mail, :onblur => "ValidateEmail(this);"%>
+  </div>
+  <div class="field", id="df">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :conform_password %><br />
+    <%= f.text_field :password, :onblur => "ValidatePass(document.getElementById('df'), this);"%>
+  </div>
+  <div class="field">
+    <%= f.label :status %>:<br />
+   Active<%= f.radio_button(:status, "Active") %>
+   Blocked<%= f.radio_button(:status, "Blocked") %>
+    
+  </div>
+  <div class="field">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name %>
+  </div>
+  <div class="field">
+    <%= f.label :about %><br />
+    <%= f.text_area :about %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

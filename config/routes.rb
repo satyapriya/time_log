@@ -1,5 +1,9 @@
 Demo1::Application.routes.draw do
+  resources :accounts
+
+
   resources :posts
+  match 'register' => "accounts#new", :as => :register
 
 
   # The priority is based upon order of creation:

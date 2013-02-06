@@ -14,6 +14,7 @@
   <b>Content:</b>
   <%= @post.content %>
 </p>
+<p id="pdf_link"><%= link_to "Download Invoice (PDF)", posts_path(@posts, :format => "pdf") %></p>
 
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
